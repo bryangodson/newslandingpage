@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png" />
+
+    <title>Frontend Mentor | News homepage</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: inter;
+      }
+      @font-face {
+        font-family: inter;
+        src: url(./assets/fonts/inter.ttf);
+      }
+      :root {
+        --softOrange: hsl(35, 77%, 62%);
+        --softRed: hsl(5, 85%, 63%);
+        --offWhite: hsl(36, 100%, 99%);
+        --grayishBlue: hsl(233, 8%, 79%);
+        --darkGrayishBlue: hsl(236, 13%, 42%);
+        --veryDarkBlue: hsl(240, 100%, 5%);
+      }
+      body {
+        position: relative;
+      }
+      header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        padding: 20px;
+      }
+      header img {
+        width: 50px;
+      }
+      .top {
+        width: 100%;
+        padding: 20px;
+      }
+      .top img {
+        width: 100%;
+        height: auto;
+      }
+      .top .desktop {
+        display: none;
+      }
+      .top div {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 20px;
+      }
+      .top div h1 {
+        padding-right: 15px;
+        padding-top: 10px;
+        font-weight: 800;
+      }
+      .top div section p {
+        font-size: 15px;
+        color: var(--grayishBlue);
+        padding-top: 10px;
+        margin-bottom: 25px;
+      }
+      .top div section a {
+        width: 110px;
+        text-decoration: none;
+        background: var(--softRed);
+        color: var(--offWhite);
+        text-transform: uppercase;
+        padding: 8px;
+        font-size: 14px;
+        letter-spacing: 2px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      .middle {
+        width: calc(100% - 40px);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-left: 20px;
+        margin-top: 45px;
+        background: var(--veryDarkBlue);
+        padding: 20px;
+        color: wheat;
+      }
+      .middle h2 {
+        color: var(--softOrange);
+        margin-bottom: 20px;
+        font-weight: 700;
+        height: 20px;
+      }
+      .middle div {
+        height: calc(100% - 20px);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .middle section h3 {
+        color: var(--offWhite);
+        padding-bottom: 5px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .middle section h3:hover {
+        color: var(--softOrange);
+      }
+      .middle section p {
+        color: var(--darkGrayishBlue);
+        font-size: 15px;
+        padding-bottom: 10px;
+      }
+      hr {
+        opacity: 0.2;
+        width: 100%;
+      }
+      .bottom {
+        width: calc(100% - 40px);
+        margin-top: 50px;
+        margin-left: 20px;
+      }
+      .bottom div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-block: 30px;
+      }
+      .bottom img {
+        width: 80px;
+      }
+      .bottom div section {
+        width: calc(100% - 100px);
+        padding-left: 10px;
+      }
+      .bottom div section h2 {
+        color: var(--grayishBlue);
+        margin-block: 5px;
+      }
+      .bottom div section h3 {
+        color: var(--veryDarkBlue);
+        font-weight: 700;
+        margin-block: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .bottom div section h3:hover {
+        color: var(--softRed);
+      }
+      .bottom div section p {
+        font-size: 15px;
+        line-height: 25px;
+        color: var(--grayishBlue);
+        font-weight: 500;
+      }
+      .more:hover {
+        background: var(--veryDarkBlue);
+      }
+      /* .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      } */
+      header nav {
+        display: none;
+      }
+      .nav {
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        right: -100%;
+        transition: all 0.3s ease;
+      }
+      .nav.showNav {
+        right: 0;
+      }
+
+      .nav section {
+        width: 60%;
+        background: var(--offWhite);
+        padding: 20px;
+        float: right;
+      }
+      .nav section img {
+        width: 30px;
+        margin-left: calc(100% - 30px);
+      }
+      .nav nav {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 60%;
+        height: 100%;
+        background: var(--offWhite);
+        float: right;
+      }
+      .nav nav a {
+        text-decoration: none;
+        color: var(--darkGrayishBlue);
+        font-weight: 500;
+        padding: 20px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+      header nav a:hover,
+      .nav nav a:hover {
+        color: var(--softRed);
+      }
+      @media screen and (min-width: 768px) {
+        .topAndMiddle {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          flex-direction: row;
+          padding-inline: 10%;
+        }
+        header {
+          padding-inline: 10%;
+        }
+        header .menu {
+          display: none;
+        }
+        header nav {
+          display: block;
+        }
+        header nav a {
+          text-decoration: none;
+          color: var(--darkGrayishBlue);
+          font-weight: 500;
+          padding: 20px;
+          font-size: 15px;
+          transition: all 0.3s ease;
+        }
+        header nav a:hover {
+          color: var(--softRed);
+        }
+        .top {
+          width: 60%;
+          padding-inline: 0;
+        }
+        .top img:first-child {
+          display: none;
+        }
+        .top div h1 {
+          padding-right: 70px;
+          padding-top: 0;
+          font-size: 2.5rem;
+          width: 50%;
+        }
+        .top .desktop {
+          display: block;
+        }
+        .middle {
+          margin-top: 20px;
+          width: 35%;
+          margin-inline: 0;
+        }
+        .top div {
+          flex-direction: row;
+          margin-top: 30px;
+        }
+        .top div section {
+          width: 50%;
+        }
+        .top div section p {
+          padding-right: 10px;
+        }
+        .bottom {
+          display: flex;
+          justify-content: space-between;
+          padding-inline: 10%;
+          margin-left: 0;
+          width: 100%;
+        }
+        .nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <section>
+        <img src="./assets/images/icon-menu-close.svg" alt="" class="close" />
+      </section>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">New</a>
+        <a href="#"
+          >Popular
+          <a href="#">Trending</a>
+          <a href="#">Categories</a>
+        </a>
+      </nav>
+    </div>
+    <header>
+      <img src="./assets/images/logo.svg" />
+      <img src="./assets/images/icon-menu.svg" class="menu" />
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">New</a>
+        <a href="#"
+          >Popular
+          <a href="#">Trending</a>
+          <a href="#">Categories</a>
+        </a>
+      </nav>
+    </header>
+    <div class="topAndMiddle">
+      <div class="top">
+        <img src="./assets/images/image-web-3-mobile.jpg" alt="" />
+        <img
+          src="./assets/images/image-web-3-desktop.jpg"
+          alt=""
+          class="desktop" />
+        <div>
+          <h1>The Bright Future of Web 3.0?</h1>
+          <section>
+            <p>
+              We dive into the next evolution of the web that claims to put the
+              power of the platforms back into the hands of the people. But is
+              it really fulfilling its promise?
+            </p>
+            <a href="#" class="more">Read More</a>
+          </section>
+        </div>
+      </div>
+      <div class="middle">
+        <h2>New</h2>
+        <div>
+          <section>
+            <h3>Hydrogen VS Electric Cars</h3>
+            <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
+          </section>
+          <br />
+          <hr />
+          <br />
+          <section>
+            <h3>The Downsides of AI Artistry</h3>
+            <p>
+              What are the possible adverse effects of on-demand AI image
+              generation?
+            </p>
+          </section>
+          <br />
+          <hr />
+          <br />
+          <section>
+            <h3>Is VS Funding Drying Up?</h3>
+            <p>
+              Private funding bu VC firms is down 50% YOY. We take a look at
+              what that means
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>
+        <img src="./assets/images/image-retro-pcs.jpg" alt="" />
+        <section>
+          <h2>01</h2>
+          <h3>Reviving Retro PCs</h3>
+          <p>What happens when old PCs are given modern upgrades?</p>
+        </section>
+      </div>
+      <div>
+        <img src="./assets/images/image-top-laptops.jpg" alt="" />
+        <section>
+          <h2>02</h2>
+          <h3>Top Laptops of 2022</h3>
+          <p>Our best picks for various needs and budgets.</p>
+        </section>
+      </div>
+      <div>
+        <img src="./assets/images/image-gaming-growth.jpg" alt="" />
+        <section>
+          <h2>03</h2>
+          <h3>The Growth of Gaming</h3>
+          <p>How the pandemic has sparked fresh opportunities.</p>
+        </section>
+      </div>
+    </div>
+    <script>
+      let menu, close, nav;
+      menu = document.querySelector(".menu");
+      closeNav = document.querySelector(".close");
+      nav = document.querySelector(".nav");
+      menu.addEventListener("click", () => {
+        // nav.classList.remove("hideNav");
+        nav.classList.toggle("showNav");
+      });
+      closeNav.addEventListener("click", () => {
+        // nav.classList.remove("hideNav");
+        nav.classList.toggle("showNav");
+      });
+    </script>
+  </body>
+</html>
